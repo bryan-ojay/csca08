@@ -1,0 +1,4 @@
+percentage|0,1|"Minimum mark value"|0
+percentage|10,10|"Maximum mark value"|100
+percentage|10.25, 20.5|"Intermediate value with floats"|50
+contribution|12,20,10|"Intermediate values"|6
