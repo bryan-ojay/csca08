@@ -1,0 +1,33 @@
+split_input|""|"Empty String"|['', '', '']
+split_input|"ACTATCATCAGATCATC"|"Only upstream data"|['ACTATCATCAGATCATC', '', '']
+split_input|"ATCAGATCATATGGCTACATCACTGATCAG"|"Upstream data and gene"|['ATCAGATCAT', 'ATGGCTACATCACTGATCAG', '']
+split_input|"ATGGCTACATCACTGATCAG"|"No upstream data and gene"|['', 'ATGGCTACATCACTGATCAG', '']
+split_input|"CATCATACAGACTCATGGCTATCAGATGGACTACTACTACTAAG"|"Upstream data, gene and downstream data"|['CATCATACAGACTC', 'ATGGCTATCAG', 'ATGGACTACTACTACTAAG']
+split_input|"ATGGCTACATCACTGATCAGATGGACTACTACTACTAAG"|"Gene and downstream data, no upstream data"|['', 'ATGGCTACATCACTGATCAG', 'ATGGACTACTACTACTAAG']
+split_input|"ATGATGATGATGATG"|"Gene and downstream data, multiple ATG sequences, no upstream data"|['', 'ATG', 'ATGATGATGATG']
+split_input|"CATCATACATCATCATATGATGATGATGATG"|"Upstream data, gene and downstream data, multiple ATG sequences"|['CATCATACATCATCAT', 'ATG', 'ATGATGATGATG']
+get_gene|""|"Empty String"|'ERROR'
+get_gene|"ACTATCATCAGATCATC"|"Only upstream data"|'ERROR'
+get_gene|"ATCAGATCATATGGCTACATCACTGATCAG"|"Upstream data and gene"|'ATGGCTACATCACTGATCAG'
+get_gene|"ATGGCTACATCACTGATCAG"|"No upstream data and gene"|'ATGGCTACATCACTGATCAG'
+get_gene|"CATCATACAGACTCATGGCTATCAGATGGACTACTACTACTAAG"|"Upstream data, gene and downstream data"|'ATGGCTATCAG'
+get_gene|"ATGGCTACATCACTGATCAGATGGACTACTACTACTAAG"|"Gene and downstream data, no upstream data"|'ATGGCTACATCACTGATCAG'
+get_gene|"ATGATGATGATGATG"|"Gene and downstream data, multiple ATG sequences, no upstream data"|'ATG'
+get_gene|"CATCATACATCATCATATGATGATGATGATG"|"Upstream data, gene and downstream data, multiple ATG sequences"|'ATG'
+validate_gene|""|"Empty String"|False
+validate_gene|"ATGGACATACTGAGTAAT"|"Valid gene, meets all requirements"|True
+validate_gene|"CATGATCCTATC"|"Does not start with ATG, all other requirements met"|False
+validate_gene|"ATGCATTACATGGATAAT"|"More than 1 ATG in sequence"|False
+validate_gene|"ATG"|"Does not contain a codon after ATG"|False
+validate_gene|"ATGCATCATCATT"|"Does not contain only full codons"|False
+validate_gene|"ATGGGG"|"Contains 4 of the same nucleotides in a row"|False
+is_palindromic|"ATGGACATACAGGTA"|"Valid gene, palindromic"|True
+is_palindromic|"CCCCCC"|"Invalid gene, palindromic"|True
+is_palindromic|"ATGGACATA"|"Valid gene, not palindromic|False
+is_palindromic|"CACCAAAC"|"Invalid gene, not palindromic|False
+evaluate_sequence|"CAACACAGT"|"No Gene Found, Not Palindromic"|'No Gene Found'
+evaluate_sequence|"CAGTATGAC"|"No Gene Found, Palindromic"|'No Gene Found'
+evaluate_sequence|"ATGCATCATCGAC"|"Gene Found, Not Valid, Not Palindromic"|'Invalid Gene'
+evaluate_sequence|"ATGCGTA"|"Gene Found, Not Valid, Palindromic"|"Invalid Gene'
+evaluate_sequence|"ATGTGAAGGGAT"|"Gene Found, Valid, Not Palindromic"|'Valid Gene Found'
+evaluate_sequence|"ATGGTA"|"Gene Found, Valid, Palindromic"|'Valid Palindromic Gene Found'

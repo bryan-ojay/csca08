@@ -1,0 +1,24 @@
+setup|switch|LightSwitch('off')
+switch.turn_on()|'Turn on the switch'|None
+switch.__str__()|'Check if switch is on'|'I am on'
+switch.turn_off()|'Turn off the switch'|None
+switch.__str__()|'Check if switch is off'|'I am off'
+switch.flip()|'Flip the state of the switch'|None
+switch.__str__()|'Check if switch is on after flip'|'I am on'
+switch.turn_on()|'Turn on a switch that is already on'|None
+switch.__str__()|'Check if switch is still on'|'I am on'
+
+setup|switchboard|SwitchBoard(5)
+setup|switches|switchboard._switches
+switches[0].__str__()|'Check if light switch 0 starts off'|'I am off'
+switches[1].__str__()|'Check if light switch 1 starts off'|'I am off'
+switches[2].__str__()|'Check if light switch 2 starts off'|'I am off'
+switches[3].__str__()|'Check if light switch 3 starts off'|'I am off'
+switches[4].__str__()|'Check if light switch 4 starts off'|'I am off'
+switchboard.flip(1)|'Flip the light switch at index 1'|None
+switches[1].__str__()|'Check if light switch 1 flipped on'|'I am on'
+switchboard.__str__()|'Check if the switchboard sees light switch 1 is on'|'The following switches are on: 1'
+switchboard.which_switch()|'Check if the switchboard sees light switch 1 is on (list)'|[1]
+switchboard.flip_every(2)|'Flip all even-indexed light switches'|None
+switchboard.__str__()|'Check if switchboard sees 0,1,2,4 on'|'The following switches are on: 0 1 2 4'
+switchboard.which_switch()|'Check if the switchboard sees 0,1,2,4 on (list)|[0,1,2,4]   

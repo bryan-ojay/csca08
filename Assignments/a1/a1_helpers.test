@@ -1,0 +1,55 @@
+gene_swap('AAAA')|'Adenine pairing with Thymine'|'TTTT'
+gene_swap('GGGG')|'Guanine pairing with Cytosine'|'CCCC'
+gene_swap('TTTT')|'Thymine pairing with Adenine'|'AAAA'
+gene_swap('CCCC')|'Adenine pairing with Guanine'|'GGGG'
+gene_swap('*2[**]*')|'Any other input, output should be identical'|'*2[**]*'
+
+pair_genes('AAAA','TTTT')|'Adenine pairing with Thymine'|True
+pair_genes('TTTT','AAAA')|'Thymine pairing with Adenine'|True
+pair_genes('CCCC','GGGG')|'Cytosine pairing with Guanine'|True
+pair_genes('GGGG','CCCC')|'Guanine pairing with Cytosine'|True
+pair_genes('ATCG','ATCG')|'Genes can't pair with identica genes'|False
+pair_genes('ATCG','CGAT')|'Genes pair in reverse direction'|True
+pair_genes('AATT','TTAT')|'Genes must pair with all nucleotides'|False
+
+zip_length('ATCGCGAT'|'Even-length gene, all nucleotides zip'|4
+zip_length('ATCGGCGAT'|'Odd-length gene, all nucleotides up to the middle zip'|4
+zip_length('CTCGCGAT'|'Even-length gene, all nucleotides except both ends zip'|0
+zip_length('CTCGACGAT'|'Odd-length gene, all nucleotides up to the middle and except both ends zip'|0
+zip_length('GACTGCCGTCAG')|'Odd- length gene with identical nucleotides at both ends|0
+zip_length('GACTGCACGTCAG')|'Odd- length gene with identical nucleotides at both ends|0
+
+setup|find_anchor_gene|['A', 'T', 'C', 'G', 'A', 'T', 'C', 'G', 'A', 'T', 'C', 'G']
+find_anchors(field_anchor_gene, 'CC', TT', False)|'Anchors not found forwards'|[-1, -1]
+find_anchors(field_anchor_gene, 'CC', TT', True)|'Anchors not found backwards'|[-1, -1]
+find_anchors(field_anchor_gene, 'AT', TT', False)|'Reading forwards, start anchor found'|[0, -1]
+find_anchors(field_anchor_gene, 'CC', 'AT', False)|'Reading forwards, end anchor found'|[-1, -1]
+find_anchors(field_anchor_gene, 'GC', TT', True)|'Reading backwards, start anchor found'|[-1, -1]
+find_anchors(field_anchor_gene, 'AT', 'CT', True)|'Reading backwards, end anchor found'|[1, -1]
+find_anchors(field_anchor_gene, 'AT', 'CG', False)|'Reading forwards, anchor strings are adjacent'|[0, 3]
+find_anchors(field_anchor_gene, 'GC', 'TA', False)|'Reading backwards, anchor strings are adjacent'|[0, 3]
+find_anchors(field_anchor_gene, 'ATCGA', 'ATCGA', False)|'Reading forwards, anchor strings found, but not separately'|[0, -1]
+find_anchors(field_anchor_gene, 'AGCTA', 'AGCTA', True)|'Reading backwards, anchor strings found, but not separately'|[0, -1]
+
+setup|anchors_found
+
+
+- can't find anchor
+- only found start
+- only found end
+- only found start in reverse
+- only found end in reverse
+
+- only found start forwards, found both in reverse
+- only found end forwards, found both in reverse
+- found both forwards, found start in reverse
+- found both forwards, found end in reverse
+
+- found both forwards and backwards, forwards comes first in index
+- found both forwards and backwards, backwards comes first in index
+- found both forwards and backwards, same index, forwards shorter
+- found both forwards and backwards, same index, backwards shorter
+- found both forwards and backwards, same index, same length
+
+- found only anchor strings forwards
+- found only anchor strings backwards

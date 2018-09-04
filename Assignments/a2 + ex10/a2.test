@@ -1,0 +1,75 @@
+setup|chromosome|Chromosome()
+chromosome.set_by_pos(4, 'AG')|'Setting a valid nucleotide in a chromosome'|None
+chromosome.set_by_pos(72, 'GT')|'Setting an invalid nucleotide in a chromosome'|None
+chromosome.set_by_pos(4, 'CC')|'Setting a valid nucleotide in the same position'|None
+chromosome.__repr__()|'Testing if the output correctly states the set positions'|'Positions set: [4, 72]'
+chromosome.get_by_pos(4)|'Output for getting a nucleotide from a set position'|'CC'
+chromosome.get_by_pos(1)|'Output for getting a nucleotide from a position not yet set'|'??'
+chromosome.get_by_pos(-1)|'Output for getting a nucleotide from an invalid position in a chromosome'|'--'
+chromosome.get_all_pos() == {4: 'CC', 72: 'GT'}|'Output for getting all the set positions and their nucleotides'|True
+
+setup|jack|Male('male-1')
+setup|jill|Female('female-1')
+jack.__repr__()|'Testing if the output correctly states the male information'|'Male, id: male-1, sex: M, 23 chromosomes'
+jill.__repr__()|'Testing if the output correctly states the male information'|'Female, id: female-1, sex: F, 23 chromosomes'
+
+jack.validate_nucleotide('CG')|'Validating a valid nucleotide for Humans'|None
+jack.validate_pair(0)|'Validating the first pair'|None
+jack.validate_pair(22)|'Validating the last pair'|None
+jack.validate_pair(12)|'Validating an intermediate pair'|None
+jack.validate_position(0)|'Validating the first position'|None
+jack.validate_position(99999)|'Validating a very large position'|None
+
+jill.set_by_pos(1, 1, 'GT')|'Setting a valid nucleotide in a Human, second pair and position'|None
+jack.set_by_pos(22, 120, 'AA')|'Setting a valid nucleotide in a Human, male sex chromosome, last pair, large position'|None
+
+jill.get_by_pos(1, 1)|'Output from getting an known nucleotide from a valid pair and position'|'GT'
+jill.get_by_pos(90, 34)|'Output from getting a nucleotide from an invalid pair'|'--'
+jack.get_by_pos(17, 23)|'Output from getting an invalid nucleotide from a valid pair and position'|'??'
+jack.get_by_pos(3, 10)|'Output from getting an unknown nucleotide from a valid pair and position'|'??'
+
+jack.set_chromosome(10, jill.get_chromosome(1))|'Linking a chromosome in one human to a chromosome in another human'|None
+jill.set_by_pos(1, 27, 'TA')|'Setting a nucleotide pair in the linked chromosome from the source'|None
+jack.set_by_pos(10, 43, 'AC')|'Setting a nucleotide pair in the linked chromosome from the destination'|None
+jill.get_chromosome(1).__repr__()|'Testing if the output correctly states the set positions in the source'|'Positions set: [1, 27, 43]'
+jack.get_chromosome(10).__repr__()|'Testing if the output correctly states the set positions in the destination'|'Positions set: [1, 27, 43]'
+
+jill.set_marker('marker-1', 1, 1)|'Sets a marker at a known valid pair and position'|None
+jill.set_marker('marker-2', 11, 93)|'Sets another marker an unknown valid pair and position'|None
+jill.get_by_marker('marker-1')|'Output from getting the known nucleotide that a marker is mapped to'|'GT'
+jill.get_by_marker('marker-2')|'Output from getting the unknown nucleotide that a marker is mapped to'|'??'
+jill.get_by_marker('marker-3')|'Output from getting a nucleotide via marker from an invalid position'|'--'
+jill.get_by_marker('marker-4')|'Output from getting a nucleotide via marker from an invalid pair'|'--'
+jill.get_by_marker('marker-5')|'Output from getting a nucleotide via an unset marker'|'--'
+jill.set_by_marker('marker-2', 'GA')|'Sets a valid nucleotide at a correctly set marker'|None
+jill.get_by_marker('marker-2')|'Output after mapping a valid nucleotide to a valid marker'|'GA'
+jill.get_by_marker('marker-3')|'Output after mapping a valid nucleotide to an invalid marker'|'--'
+
+setup|query|Query()
+query.set_by_pos(1, 1, 'G1')|'Set position in query to match position in human and map memory nucleotide 1'|None
+query.set_by_pos(1, 27, '12')|'Check that memory nucleotide 1 kept its value, map nucleotide 2'|None
+query.set_by_pos(1, 43, '2C')|'Check that memory nucleotide 2 kept its value'|None
+query.set_marker('test-22', 22, 7)|'Set a marker at a position in the sex chromosome'|None
+query.set_by_marker('test-22', 'AA')|'Set a nucleotide in the position via the marker'|None
+query.get_by_marker('test-22')|'Check that the given marker and nucleotide were valid'|'AA'
+jill.test(query)|'Female matches all the queries except the position in the sex chromosome'|True
+jack.test(query)|'Male matches all the queries except the position in the sex chromosome'|False
+
+setup|new_binder|Binder()
+jill.set_by_pos(1, 1, 'GT')|'Set a position to be defined both in male and female (female)'|None
+jack.set_by_pos(1, 1, 'AA')|'Set a position to be defined both in male and female (female)'|None
+jack.set_by_pos(2, 27, 'CA')|'Set a position that is only defined for male'|None
+jill.set_by_pos(3, 39, 'TG')|'Set a position that is only defined for female'|None
+new_binder.set_by_pos(1, 1, 'RM')|'Set the mutual position of male and female to be right maternal in binder'|None
+new_binder.set_by_pos(2, 27, 'LM')|'Set the position only known in male to be right maternal in binder'|None
+new_binder.set_by_pos(3, 39, 'RM')|'Set the position only known in female to be right maternal in binder'|None
+new_binder.set_by_pos(4, 64, 'LM')|'Set an unknown position in both male and female to be left maternal in binder'|None
+new_binder.set_sex('M')|'Set the binder gender to male'|None
+
+setup|child|jill.procreate(jack, new_binder)
+child.__repr__()|'Check the gender, id and number of chromosomes in the child'|'Male, id: mafe, sex: M, 23 chromosomes'
+child.set_by_pos
+child.get_by_pos(1, 1)|'Check the position defined by both male and female, set to be right maternal'|'AT'
+child.get_by_pos(2, 27)|'Check the position only known in male'|'CA'
+child.get_by_pos(3, 39)|'Check the position only known in female'|'TG'
+child.get_by_pos(4, 64)|'Check the position unknown in both male and female'|'??'

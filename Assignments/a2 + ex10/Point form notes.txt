@@ -1,0 +1,58 @@
+!!!POINT FORM NOTES!!!
+---
+GENERAL:
+
+ - works exclusively with humans for the moment, may work with other animal 
+   dna for the future.
+ - humans have 23 pairs of chromosomes (other animals have more/less), 
+   22 are normal pairings, last is the gender pairing
+ - Individual pairs of nucleotides can be found either by referring to
+   their chromosome pair and location (e.g., chromosome pair 7, position 17), 
+   or by their marker (e.g., rs1799883).
+
+QUERY:
+   
+ - Scientists also want to be able to query an individual’s genetic sequence,
+   basically asking if a certain nucleotide pattern exists, (i.e. check if gene
+   with marker rs46237 is equal to 'AG'?, or check if pair 9 position 74 the
+   reverse order of position 95).
+   
+   - To do this, scientists create special query chromosome pairs that are
+     BLANK EVERYWHERE except for the pairs they wish to analyze. (They can
+     use normal nucleotides (A, T, G, C) or memory nucleotides (1,2,3,4, etc.)
+     
+     NOTE: Memory nucleotides are just placeholders for other values
+     i.e. 1 could be a memory nucleotide for B, 2 for C, etc.
+     every 1 or 2 in that sequence will represent the same nucleotide
+     (i.e. A1G2 is ABGC). ALL MEMORY NUCLEOTIDES ARE REPRESENTED BY A NUMBER
+     BETWEEN 0 AND 9.
+     
+QUERY REJECTED IF:
+  - a normal nucleotide in a query chromosome doesn’t equal the nucleotide
+   in the chromosome being compared against
+  - every memory nucleotide with the same value isn’t compared with nucleotides
+   of the same value
+
+- If a query nucleotide compares against an unknown nucleotide (i.e., the model
+  simply doesn’t have any information on it) it should not cause the query to
+  be rejected, except in the case where it is being compared against the male
+  sex chromosome pair (23), in which case comparing a query nucleotide against
+  something unknown should reject the query.
+   
+   
+OFFSPRING:
+- When two individuals mate to produce offspring, each chromosome pair of
+  the offspring is filled with nucleotide pairs where one nucleotide
+  comes from the mother and one comes from the father.
+
+- These scientists have discovered a way to choose which nucleotide will
+  come from each parent by building binding chromosomes that can set a given
+  position or marker to be one of these two:
+ - left-maternal:
+    -> the child gets the mother's left nucleotide and the father’s right
+
+ - right-maternal:
+    -> the child gets the father's left nucleotide and the mother's right
+    
+CODING: Anything that is not specified in the handout is up to you. 
+        MAKE SENSIBLE DECISIONS!!!!!!!!!!!

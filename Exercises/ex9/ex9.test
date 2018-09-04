@@ -1,0 +1,19 @@
+setup|parallel|Parallelogram(4.0, 5.0, 30.0)
+parallel.area()|"Check if area method returns the desired area"|10.0
+parallel.bst()|"Check if correct base side and area are returned"|[4.0, 5.0, 30.0]
+parallel.__str__()|"Correct string representation of the parallelogram"|"I am a Parallelogram with area 10.0"
+
+setup|rectangle|Rectangle(3, 5)
+rectangle.area()|"Check if area method returns the desired area"|15.0
+rectangle.bst()|"Check if correct base side and area are returned"|[3, 5, 90.0]
+rectangle.__str__()|"Correct string representation of the parallelogram"|"I am a Rectangle with area 15.0"
+
+setup|rhombus|Rhombus(4, 30.0)
+rhombus.area()|"Check if area method returns the desired area"|8.0
+rhombus.bst()|"Check if correct base side and area are returned"|[4, 4, 30.0]
+rhombus.__str__()|"Correct string representation of the parallelogram"|"I am a Rhombus with area 8.0"
+
+setup|square|Square(5)
+square.area()|"Check if area method returns the desired area"|25.0
+square.bst()|"Check if correct base side and area are returned"|[5, 5, 90.0]
+square.__str__()|"Correct string representation of the parallelogram"|"I am a Square with area 25.0"

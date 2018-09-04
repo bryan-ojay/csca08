@@ -1,0 +1,71 @@
+pair_genes('AAAA','TTTT')|'Adenine pairing with Thymine'|True
+pair_genes('TTTT','AAAA')|'Thymine pairing with Adenine'|True
+pair_genes('CCCC','GGGG')|'Cytosine pairing with Guanine'|True
+pair_genes('GGGG','CCCC')|'Guanine pairing with Cytosine'|True
+pair_genes('ATCG','ATCG')|'Genes can't pair with identica genes'|False
+pair_genes('ATCG','CGAT')|'Genes pair in reverse direction'|True
+pair_genes('AATT','TTAT')|'Genes must pair with all nucleotides'|False
+
+zip_length('ATCGCGAT')|'Even-length gene, all nucleotides zip'|4
+zip_length('ATCGGCGAT')|'Odd-length gene, all nucleotides up to the middle zip'|4
+zip_length('CTCGCGAT')|'Even-length gene, all nucleotides except both ends zip'|0
+zip_length('CTCGACGAT')|'Odd-length gene, all nucleotides up to the middle and except both ends zip'|0
+zip_length('GACTGCCGTCAG')|'Odd- length gene with identical nucleotides at both ends|0
+zip_length('GACTGCACGTCAG')|'Odd- length gene with identical nucleotides at both ends|0
+
+setup|source1|['A', 'T', 'C', 'G', 'A', 'T', 'C', 'G', 'A', 'T', 'C', 'G']
+setup|destination1|['T', 'A', 'C', 'A', 'T', 'C', 'G', 'T', 'G', 'G', 'G']
+splice_gene(source1, destination1, 'CC', 'TT')|'Anchors not found'|None
+source1|'Check after anchors not found'|['A', 'T', 'C', 'G', 'A', 'T', 'C', 'G', 'A', 'T', 'C', 'G']
+destination1|'Check after anchors not found'|['T', 'A', 'C', 'A', 'T', 'C', 'G', 'T', 'G', 'G', 'G']
+
+setup|source2|['A', 'T', 'C', 'G', 'A', 'T', 'C', 'G', 'A', 'T', 'C', 'G']
+setup|destination2|['T', 'A', 'C', 'A', 'T', 'C', 'G', 'T', 'G', 'G', 'G']
+splice_gene(source2, destination2, 'AT', 'CC')|'Only start anchor found|None
+source2|'Check after only start anchor found'|['A', 'T', 'C', 'G', 'A', 'T', 'C', 'G', 'A', 'T', 'C', 'G']
+destination2|'Check after only start anchor found|['T', 'A', 'C', 'A', 'T', 'C', 'G', 'T', 'G', 'G', 'G']
+
+setup|source3|['A', 'T', 'C', 'G', 'A', 'T', 'C', 'G', 'A', 'T', 'C', 'G']
+setup|destination3|['T', 'A', 'C', 'A', 'T', 'C', 'G', 'T', 'G', 'G', 'G']
+splice_gene(source3, destination3, 'AAA', 'TCG')|'Only end anchor found|None
+source3|'Check after only end anchor found'|['A', 'T', 'C', 'G', 'A', 'T', 'C', 'G', 'A', 'T', 'C', 'G']
+destination3|'Check after only end anchor found|['T', 'A', 'C', 'A', 'T', 'C', 'G', 'T', 'G', 'G', 'G']
+
+setup|source4|['A', 'T', 'C', 'G', 'A', 'T', 'C', 'T', 'A', 'G', 'C', 'C']
+setup|destination4|['T', 'A', 'C', 'G', 'A', 'T', 'C', 'T', 'A', 'G', 'C', 'A']
+splice_gene(source4, destination4, 'CG', 'AG')|'Found both forwards and backwards, forwards was first in index for both splice and destination'|None
+source4|'Check after splicing'|['A', 'T', 'C', 'C']
+destination4|'Check after splicing'|['T', 'A', 'C', 'G', 'A', 'T', 'C', 'T', 'A', 'G', 'C', 'A']
+
+setup|source5|['A', 'G', 'C', 'G', 'A', 'T', 'C', 'G', 'A', 'T', 'G', 'C']
+setup|destination5|['T', 'A', 'G', 'G', 'A', 'C', 'G', 'C', 'G', 'T', 'A']
+splice_gene(source5, destination5, 'GC', 'GA')|'Found both forwards and backwards, backwards was first in index for both splice and destination'|None
+source5|'Check after splicing'|['A', 'T', 'C', 'G', 'A', 'T', 'G', 'C']
+destination5|'Check after splicing'|['T', 'A', 'G', 'C', 'G', 'C', 'G', 'T', 'A']
+
+setup|source6|['T', 'G', 'C', 'G', 'A', 'T', 'C', 'G', 'A', 'T', 'G', 'C']
+setup|destination6|['T', 'A', 'G', 'G', 'A', 'C', 'G', 'C', 'G', 'T', 'A']
+splice_gene(source6, destination6, 'GC', 'GA')|'Found forwards in source, backwards in destination'|None
+source6|'Check after splicing'|['T', 'T', 'C', 'G', 'A', 'T', 'G', 'C']
+destination6|'Check after splicing'|['T', 'A', 'G', 'C', 'G', 'C', 'G', 'T', 'A']
+
+setup|source7|['T', 'G', 'C', 'G', 'A', 'T', 'C', 'G', 'A', 'T', 'G', 'C']
+setup|destination7|['T', 'A', 'G', 'G', 'A', 'C', 'G', 'C', 'G', 'T', 'A']
+splice_gene(source7, destination7, 'TA', 'GT')|'Found backwards in source, forwards in destination'|None
+source7|'Check after splicing'|['C', 'G', 'A', 'T', 'G', 'C']
+destination7|'Check after splicing'|['T', 'A', 'G', 'C', 'G', 'T', 'A']
+
+setup|source8|['T', 'G', 'C', 'G', 'T', 'T', 'C', 'G', 'A', 'T', 'G', 'C']
+setup|destination8|['T', 'G', 'G', 'T', 'A', 'C', 'G', 'C', 'G', 'T', 'A']
+splice_gene(source8, destination8, 'TG', 'GT')|'Found both forwards and backwards, same index'|None
+source8|'Check after splicing'|['T', 'C', 'G', 'A', 'T', 'G', 'C']
+destination8|'Check after splicing'|['T', 'G', 'C', 'G', 'T', 'A', 'C', 'G', 'C', 'G', 'T', 'A']
+
+match_mask('AGGACTGAG', 'CCTG')|'Mask is ordinary gene'|1
+match_mask('TATAGGGGGACTGAG', 'C5TG')|'Mask contains a number denotation'|4
+match_mask('AGGACTGAG', '[CA]TGA')|'Mask contains a multi'|2
+match_mask('AGTATACGAT', 'T*T*C')|'Mask contains stars'|1
+match_mask('TGTGTG', '[CA]6')|'Mask contains a multiplied multi'|0
+match_mask('ATAGCTAGC', '[A[T[CA[TG]]]]')|'Mask contains embedded multis, one nucleotide equivalent to '[ATCG]'|0
+match_mask('ACGTACGATCG', 'G*8C')|'Mask contains multiplied stars'|1
+match_mask('ACTACTAGCTACGAT', 'G4')|'Mask is not found'|-1

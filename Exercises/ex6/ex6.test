@@ -1,0 +1,24 @@
+setup|int_list|[1,2,3,4,5]
+setup|float_list|[1.2, 1.3, 1.4, 1.5, 1.6]
+setup|str_list|['abc', 'def', 'ghi', '111']
+setup|array_list|[[1,2,3], [4,5,6], [7,8,9]]
+setup|tuple_list|[(1,2,3), (4,5,6), (7,8,9)]
+setup|bool_list|[False, True, False, True]
+copy_me(int_list)|'List of integers'|[2, 3, 4, 5, 6]
+copy_me(float_list)|'List of floats'|[2.2, 2.3, 2.4, 2.5, 2.6]
+copy_me(str_list)|'List of strings'|['ABC', 'DEF', 'GHI', '111']
+copy_me(array_list)|'List of lists'|['List', 'List', 'List']
+copy_me(tuple_list)|'List of tuples'|[(1,2,3), (4,5,6), (7,8,9)]
+copy_me(bool_list)|'List of booleans'|[True, False, True, False]
+mutate_me(int_list)|'List of integers'|None
+mutate_me(float_list)|'List of floats'|None
+mutate_me(str_list)|'List of strings'|None
+mutate_me(array_list)|'List of lists'|None
+mutate_me(tuple_list)|'List of tuples'|None
+mutate_me(bool_list)|'List of booleans'|None
+int_list|'Check mutated list of ints'|[2, 3, 4, 5, 6]
+float_list|'Check mutated list of floats'|[2.2, 2.3, 2.4, 2.5, 2.6]
+str_list|'Check mutated list of strings'|['ABC', 'DEF', 'GHI', '111']
+array_list|'Check mutated list of lists'|['List', 'List', 'List']
+tuple_list|'Check mutated list of tuples'|[(1,2,3), (4,5,6), (7,8,9)]
+bool_list|'Check mutated list of booleans'|[True, False, True, False]

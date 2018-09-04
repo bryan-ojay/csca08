@@ -1,0 +1,18 @@
+percentage|0,1|"Minimum mark value"|0
+percentage|10,10|"Maximum mark value"|100
+percentage|10.25, 20.5|"Intermediate value with floats"|50
+contribution|12,20,10|"Intermediate values"|6
+contribution|0,50,20|"Minimum value of weight"|0
+contribution|20,20,10|"Maximum value of weight"|10
+term_work_mark|25, 50, 100, 10, 5, 50|"Perfect score on all term work"|60.0
+term_work_mark|12.5, 25, 50, 5, 2.5, 25|"Intermediate values"|30.0
+term_work_mark|14, 28, 35, 7, 3.5, 35, 35|"More intermediate values"|42.0
+term_work_mark|0, 0, 0, 0, 0, 0, 0|"Minimum mark"|0.0
+final_mark|25, 50, 100, 10, 5, 50, 100|"Perfect score on all marked work"|100.0
+final_mark|12.5, 25, 50, 5, 2.5, 25, 50|"Intermediate values"|50.0
+final_mark|25, 50, 100, 10, 5, 50, 0|"Perfect score but 0 on 40% exam"|60.0
+final_mark|14, 28, 35, 7, 3.5, 35, 70|"More intermediate values"|70.0
+is_pass|20, 45, 70, 8, 4, 40, exam_pass_mark+1|"Overall above 50% and exam above pass mark"|True
+is_pass|20, 45, 70, 8, 4, 40, exam_pass_mark-1|"Overall above 50% but exam below pass mark"|False
+is_pass|10, 21, 12, 2, 1, 15, exam_pass_mark-1|"Overall below 50% and exam below pass mark"|False
+is_pass|10, 21, 12, 2, 1, 15, exam_pass_mark+1|"Overall below 50% but exam above pass mark"|False

@@ -1,0 +1,32 @@
+insert|"123","abc",0|"String test, starting index"|'abc123'
+insert|"123","abc",1|"String test, intermediate index"|'1abc23'
+insert|"123","abc",3|"String test, last index"|'123abc'
+insert|"123","abc", 7|"String test, beyond end of index"|'123abc'
+insert|"123","abc",-1|"String test, negative index"|'12abc3'
+insert|"123","abc",-5|"String test, negative index, beyond starting index"|'abc123'
+insert|[1,2,3], ['a','b','c'], 0|"List test, starting index"|['a', 'b', 'c', 1, 2, 3]
+insert|[1,2,3], ['a','b','c'], 1|"List test, intermediate index"|[1, 'a', 'b', 'c', 2, 3]
+insert|[1,2,3], ['a','b','c'], 3|"List test, last index"|[1, 2, 3, 'a', 'b', 'c']
+insert|[1,2,3], ['a','b','c'], 7|"List test, beyond end of index"|[1, 2, 3, 'a', 'b', 'c']
+insert|[1,2,3], ['a','b','c'], -1|"List test, negative index"|[1, 2, 'a', 'b', 'c', 3]
+insert|[1,2,3], ['a','b','c'], -5|"List test, negative index, beyond starting index"|['a', 'b', 'c', 1, 2, 3]
+up_to_first|"1234567","1"|"Starting object in string"|""
+up_to_first|"1234567","4"|"Intermediate object in string"|"123"
+up_to_first|"1234567","7"|"Last object in string"|"123456"
+up_to_first|"1234567","9"|"Object not in string"|"1234567"
+up_to_first|[1,2,3,4,5,6,7], 1|"Starting object in list"|[]
+up_to_first|[1,2,3,4,5,6,7], 4|"Intermediate object in list"|[1, 2, 3]
+up_to_first|[1,2,3,4,5,6,7], 7|"Last object in list"|[1, 2, 3, 4, 5, 6]
+up_to_first|[1,2,3,4,5,6,7], 9|"Object not in list"|[1, 2, 3, 4, 5, 6, 7]
+cut_list|"1234567", 0|"Starting index in string"|"2345671"
+cut_list|"1234567", 4|"Intermediate index in string"|"6751234"
+cut_list|"1234567", 6|"Last index in string"|"7123456"
+cut_list|"1234567", 9|"Index out of string bounds (positive)"|"1234567"
+cut_list|"1234567", -1|"Negative index in list"|"7123456"
+cut_list|"1234567", -10|"Negative index out of bounds of list"|"1234567"
+cut_list|[1,2,3,4,5,6,7], 0|"Starting index in list"|[2, 3, 4, 5, 6, 7, 1]
+cut_list|[1,2,3,4,5,6,7], 4|"Intermediate index in list"|[6, 7, 5, 1, 2, 3, 4]
+cut_list|[1,2,3,4,5,6,7], 6|"Last index in list"|[7, 1, 2, 3, 4, 5, 6]
+cut_list|[1,2,3,4,5,6,7], 9|"Index out of list bounds (positive)"|[1, 2, 3, 4, 5, 6, 7]
+cut_list|[1,2,3,4,5,6,7], -1|"Negative index in list"|[7, 1, 2, 3, 4, 5, 6]
+cut_list|[1,2,3,4,5,6,7], -10|"Negative index out of bounds of list"|[1, 2, 3, 4, 5, 6, 7]

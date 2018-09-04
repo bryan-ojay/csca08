@@ -1,0 +1,13 @@
+setup|my_dict|{'familya':['Fami', 'Lya', 'familya@utoronto.ca', 23, 'F']}
+update_field(my_dict, 'familya', 'LAST', 'Fam')|'Update last name'|None
+update_field(my_dict, 'familya', 'FIRST', 'Ilya')|'Update first name'|None
+update_field(my_dict, 'familya', 'E-MAIL', 'familya@ryerson.ca')|'Update e-mail'|None
+update_field(my_dict, 'familya', 'AGE', 34)|'Update age'|None
+update_field(my_dict, 'familya', 'GENDER', 'X')|'Update gender'|None
+my_dict|'Check updated dictionary'|{'familya':['Fam', 'Ilya', 'familya@ryerson.ca', 34, 'X']}
+setup|my_dict2|{'oldmandy':['Oldman', 'Andy', 'oldmandy@utoronto.ca', 20, 'M'], 'ebunny':['Bunny', 'Easter', 'bunny@easter.hop', 15, 'M'], 'suncandy':['Sunc', 'Andy', 'suncandy@sweet.net', 15, 'F']}
+select(my_dict2, 'LAST', 'FIRST', 'Easter')|'Check for all first names = Easter'|{'Bunny'}
+select(my_dict2, 'FIRST', 'LAST', 'Bunny')|'Check for all last names = Bunny'|{'Easter'}
+select(my_dict2, 'AGE', 'E-MAIL', 'bunny@easter.hop')|'Check for all emails = bunny@easter.hop'|{15}
+select(my_dict2, 'GENDER', 'AGE', 20)|'Check for all ages = 20'|{'M'}
+select(my_dict2, 'E-MAIL', 'GENDER', 'F')|'Check for all females'|{'suncandy@sweet.net'}

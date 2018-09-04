@@ -1,0 +1,5 @@
+--- ID, Name, Code, Title, [[Mark, weight], [Mark, weight], ...]
+100, John, CSCA08, Introduction to Computer Science I, [100, 5], [80, 10], [70 , 5], [60 , 30], [70, 20], [0, 10], [60, 20]
+100, John, CSCC43, Introduction to Databases, [50, 5], [80, 10], [50 , 5], [60 , 30], [70, 20], [100, 10], [60, 20]
+200, Jane, CSCA08, Introduction to Computer Science I, [90, 5], [100, 10], [56 , 5], [65 , 30], [70, 20], [50, 10], [70, 20]
+100, John, CSCA48, Introduction to Computer Science II, [100, 10], [80, 20], [70 , 30], [60 , 30], [70, 10]
